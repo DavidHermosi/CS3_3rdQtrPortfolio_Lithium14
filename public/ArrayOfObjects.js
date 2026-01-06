@@ -1,3 +1,5 @@
+let deletedCategories = [];
+
 function getShows() {
    const showList = getShowList(); // get the list of shows below into this function
    const cat = showCat.value; // get the category selected by a user from the dropdown mendu

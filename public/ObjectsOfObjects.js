@@ -1,3 +1,5 @@
+let deletedCategories = [];
+
 function getShows() {
    const showList = getShowList(); // get the object from the function
    const cat = showCat.value;  // get the value from the drop down
