@@ -1,23 +1,75 @@
-let deletedCategories = [];
-
 function getShows() {
    const showList = getShowList(); // get the list of shows below into this function
-   const cat = showCat.value; // get the category selected by a user from the dropdown mendu
+   const cat = showCat.value; // get the category selected by a user from the dropdown menu
 
   // construct the table content into rowString variable
-   rowString = "<tr><th>Index</th><th>Title</th><th>Casts</th><th>Year</th><th>Rating / Score</th></tr>";
-   results.innerHTML = "" // reset content of table for each getShows() function call
+   let rowString = "<tr><th>Index</th><th>Title</th><th>Casts</th><th>Year</th><th>Rating / Score</th></tr>";
+   results.innerHTML = ""; // reset content of table for each getShows() function call
+   
+   let count = 0;
    for (let ndx=0; ndx < showList.length; ndx++) {
-     if (showList[ndx].category == cat) { // include only the selected shows based on category
+     // Show all categories if "All" is selected, otherwise filter by category
+     if (cat === "All" || showList[ndx].category == cat) {
        rowString += "<tr>";
        rowString += "<td>" + ndx + "</td>";
        rowString += "<td>" + showList[ndx].title + "</td>";
        rowString += "<td>" + showList[ndx].cast + "</td>";
        rowString += "<td>" + showList[ndx].year + "</td>";
-      rowString += "<td>" + showList[ndx].ratingScore() + "</td></tr>";
+       rowString += "<td>" + showList[ndx].ratingScore() + "</td></tr>";
+       count++;
      }
    }
    results.innerHTML = rowString; // show the table content on the browser
+   document.getElementById("count").textContent = "Shows found: " + count;
+}
+
+function delShows() {
+   const cat = showCat.value;
+   const showList = getShowList();
+   
+   // Confirmation dialog
+   const confirmDelete = confirm("Are you sure you want to delete all shows in the '" + cat + "' category?");
+   
+   if (confirmDelete) {
+     // Handle "All" category
+     if (cat === "All") {
+       let totalCount = showList.length;
+       showList.length = 0; // Clear the entire array
+       
+       results.innerHTML = "";
+       document.getElementById("count").textContent = totalCount + " show(s) have been deleted";
+       alert(totalCount + " show(s) deleted successfully!");
+       return;
+     }
+     
+     // Count how many shows will be deleted
+     let deleteCount = 0;
+     for (let ndx = 0; ndx < showList.length; ndx++) {
+       if (showList[ndx].category == cat) {
+         deleteCount++;
+       }
+     }
+     
+     if (deleteCount === 0) {
+       alert("No shows found in '" + cat + "' category.");
+       return;
+     }
+     
+     // Remove shows from the array
+     for (let ndx = showList.length - 1; ndx >= 0; ndx--) {
+       if (showList[ndx].category == cat) {
+         showList.splice(ndx, 1);
+       }
+     }
+     
+     // Clear the table
+     results.innerHTML = "";
+     document.getElementById("count").textContent = deleteCount + " show(s) from '" + cat + "' category have been deleted";
+     
+     alert(deleteCount + " show(s) deleted successfully from '" + cat + "' category!");
+   } else {
+     alert("Deletion cancelled.");
+   }
 }
 
 function getShowList() {

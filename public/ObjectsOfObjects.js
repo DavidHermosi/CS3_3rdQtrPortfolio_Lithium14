@@ -1,26 +1,82 @@
-let deletedCategories = [];
-
 function getShows() {
    const showList = getShowList(); // get the object from the function
    const cat = showCat.value;  // get the value from the drop down
-   //console.log(cat)
-   rowString = "<tr><th>Key</th><th>Title</th><th>Casts</th><th>Year</th><th>Rating / Score</th></tr>";
-   results.innerHTML = ""  // resets the table
+   
+   let rowString = "<tr><th>Key</th><th>Title</th><th>Casts</th><th>Year</th><th>Rating / Score</th></tr>";
+   results.innerHTML = "";  // resets the table
+   
+   let count = 0;
    for (let key in showList) {
-     if (showList[key].category == cat  || cat == "All") {
+     // Show all categories if "All" is selected, otherwise filter by category
+     if (cat === "All" || showList[key].category == cat) {
        rowString += "<tr>";
        rowString += "<td>" + key + "</td>";
        rowString += "<td>" + showList[key].title + "</td>";
        rowString += "<td>" + showList[key].cast + "</td>";
        rowString += "<td>" + showList[key].year + "</td>";
-      rowString += "<td>" + showList[key].ratingScore() + "</td></tr>";
+       rowString += "<td>" + showList[key].ratingScore() + "</td></tr>";
+       count++;
      }
    }
    results.innerHTML = rowString;
+   document.getElementById("count").textContent = "Shows found: " + count;
+}
+
+function delShows() {
+   const cat = showCat.value;
+   const showList = getShowList();
+   
+   // Confirmation dialog
+   const confirmDelete = confirm("Are you sure you want to delete all shows in the '" + cat + "' category?");
+   
+   if (confirmDelete) {
+     // Handle "All" category
+     if (cat === "All") {
+       let totalCount = 0;
+       for (let key in showList) {
+         delete showList[key];
+         totalCount++;
+       }
+       
+       results.innerHTML = "";
+       document.getElementById("count").textContent = totalCount + " show(s) have been deleted";
+       alert(totalCount + " show(s) deleted successfully!");
+       return;
+     }
+     
+     // Count and collect keys to delete
+     let deleteCount = 0;
+     let keysToDelete = [];
+     
+     for (let key in showList) {
+       if (showList[key].category == cat) {
+         keysToDelete.push(key);
+         deleteCount++;
+       }
+     }
+     
+     if (deleteCount === 0) {
+       alert("No shows found in '" + cat + "' category.");
+       return;
+     }
+     
+     // Delete the shows
+     for (let i = 0; i < keysToDelete.length; i++) {
+       delete showList[keysToDelete[i]];
+     }
+     
+     // Clear the table
+     results.innerHTML = "";
+     document.getElementById("count").textContent = deleteCount + " show(s) from '" + cat + "' category have been deleted";
+     
+     alert(deleteCount + " show(s) deleted successfully from '" + cat + "' category!");
+   } else {
+     alert("Deletion cancelled.");
+   }
 }
 
 function getShowList() {
-  // sample of an array with objects
+  // sample of an object with objects
  const netflixShows = {
   breakingBad: {
     title: "Breaking Bad",
@@ -151,7 +207,6 @@ function getShowList() {
     }
   }
 };
-
 
   return netflixShows;
 }
