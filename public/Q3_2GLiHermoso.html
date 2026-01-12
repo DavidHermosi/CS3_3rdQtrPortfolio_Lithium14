@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<form id="login" method="post" action="/submit_registration">
+<fieldset form="login">
+<legend><h2>Student Registration Form</h2></legend>
+<label for="StudentID">Student ID</label><br><br>
+<input type="number" id="StudentID" name="StudentID" required><br><br>
+<label for="FullName">Full Name</label><br><br>
+<input type="text" id="FullName" name="FullName" required><br><br>
+<label for="Birthday">Birthday</label><br><br>
+<input type="date" id="Birthday" name="Birthday" required><br><br>
+<label for="Mobile Phone">Mobile Phone</label><br><br>
+<input type="text" id="MobilePhone" name="MobilePhone" required><br><br>
+</fieldset><br>
+
+<fieldset form="login">
+<legend><h2>Additional Information</h2></legend>
+<label for="hob">Grade Level</label><br>
+<select name="GradeLevel" id="GradeLevel" required>
+  <option value="7">Year 7</option>
+  <option value="8">Year 8</option>
+  <option value="9">Year 9</option>
+  <option value="10">Year 10</option>
+  <option value="11">Year 11</option>
+  <option value="12">Year 12</option>
+</select><br><br>
+<label for="InternExtern">Intern or Extern</label><br>
+<input type="radio" id="Intern" name="InternExtern" value="Intern" required>
+<label for="Intern">Intern</label>
+<input type="radio" id="Extern" name="InternExtern" value="Extern" required>
+<label for="Extern">Extern</label><br><br>
+
+<label for="clubs">Preferred Organization/Club</label><br>
+<select name="clubs" id="clubs" required>
+  <option value="ArtClub">Art Club</option>
+  <option value="ScienceClub">Science Club</option>
+  <option value="DramaClub">Drama Club</option>
+  <option value="MusicClub">Music Club</option>
+  <option value="SportsClub">Sports Club</option>
+</select><br><br>
+<label for="reason">Why do you want to join?</label>
+<textarea id="tArea" name="reason" rows="4" cols="50" required> </textarea>
+</fieldset><br>
+
+<input type="submit" value="Submit">
+<input type="reset" value="Reset">
+</form>
+
+
+
+
+
+
+</html>
