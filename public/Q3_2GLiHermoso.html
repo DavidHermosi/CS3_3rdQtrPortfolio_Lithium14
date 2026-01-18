@@ -8,7 +8,10 @@
         }
     </style>
 </head>
-<form id="login" method="post" action="/submit_registration">
+<form id="login" method="post" action="/submit_registration"
+onsubmit="return confirm('Do you really want to submit this form?');" 
+onreset="return confirm('Do you really want to reset this form?');"
+onblur="this.style.background='lightyellow';">
 <fieldset form="login">
 <legend><h2>Student Registration Form</h2></legend>
 <label for="StudentID">Student ID</label><br><br>
