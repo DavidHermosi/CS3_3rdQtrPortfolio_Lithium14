@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Student Registration Form</title>
     <style>
         :focus {
             outline: 2px solid blue;
         }
+        input:focus, select:focus, textarea:focus {
+            background-color: lightyellow;
+        }
     </style>
 </head>
+
 <form id="login" method="post" action="/submit_registration"
 onsubmit="return confirm('Do you really want to submit this form?');" 
 onreset="return confirm('Do you really want to reset this form?');"
 onblur="this.style.background='lightyellow';">
+
 <fieldset form="login">
+
 <legend><h2>Student Registration Form</h2></legend>
 <label for="StudentID">Student ID</label><br><br>
 <input type="number" id="StudentID" name="StudentID" required><br><br>
@@ -24,10 +31,12 @@ onblur="this.style.background='lightyellow';">
 <input type="email" id="Email" name="Email" required><br><br>
 <label for="Mobile Phone">Mobile Phone</label><br><br>
 <input type="text" id="MobilePhone" name="MobilePhone" required><br><br>
+
 </fieldset><br>
 
 <fieldset form="login">
-<legend><h2>Additional Information</h2></legend>
+
+  <legend><h2>Additional Information</h2></legend>
 <label for="hob">Grade Level</label><br>
 <select name="GradeLevel" id="GradeLevel" required>
   <option value="7">Year 7</option>
@@ -53,6 +62,7 @@ onblur="this.style.background='lightyellow';">
 </select><br><br>
 <label for="reason">Why do you want to join?</label>
 <textarea id="tArea" name="reason" rows="4" cols="50" required> </textarea>
+
 </fieldset><br>
 
 <input type="submit" value="Submit">
