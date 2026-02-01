@@ -87,5 +87,5 @@ form.onsubmit = function(event) {
 
 document.getElementById('viewSignups').onclick = function() {
     // Navigate to the view page
-    window.location.href = 'viewSignUps.html';
+    window.location.href = './Q3_3GLiHermoso.html';
 };
