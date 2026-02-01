@@ -10,11 +10,16 @@
         input:focus, select:focus, textarea:focus {
             background-color: lightyellow;
         }
+        button {
+            padding: 8px 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
+<body>
 <form id="login" method="post"
-onsubmit="return confirm('Do you really want to submit this form?');" 
 onreset="return confirm('Do you really want to reset this form?');"
 onblur="this.style.background='lightyellow';">
 
@@ -29,7 +34,7 @@ onblur="this.style.background='lightyellow';">
 <input type="date" id="Birthday" name="Birthday" required><br><br>
 <label for="Email">Email Address</label><br><br>
 <input type="email" id="Email" name="Email" required><br><br>
-<label for="Mobile Phone">Mobile Phone</label><br><br>
+<label for="MobilePhone">Mobile Phone</label><br><br>
 <input type="text" id="MobilePhone" name="MobilePhone" required><br><br>
 
 </fieldset><br>
@@ -37,14 +42,14 @@ onblur="this.style.background='lightyellow';">
 <fieldset form="login">
 
   <legend><h2>Additional Information</h2></legend>
-<label for="hob">Grade Level</label><br>
+<label for="GradeLevel">Grade Level</label><br>
 <select name="GradeLevel" id="GradeLevel" required>
-  <option value="7">Year 7</option>
-  <option value="8">Year 8</option>
-  <option value="9">Year 9</option>
-  <option value="10">Year 10</option>
-  <option value="11">Year 11</option>
-  <option value="12">Year 12</option>
+  <option value="Grade 7">Grade 7</option>
+  <option value="Grade 8">Grade 8</option>
+  <option value="Grade 9">Grade 9</option>
+  <option value="Grade 10">Grade 10</option>
+  <option value="Grade 11">Grade 11</option>
+  <option value="Grade 12">Grade 12</option>
 </select><br><br>
 <label for="InternExtern">Intern or Extern</label><br>
 <input type="radio" id="Intern" name="InternExtern" value="Intern" required>
@@ -54,13 +59,13 @@ onblur="this.style.background='lightyellow';">
 
 <label for="clubs">Preferred Organization/Club</label><br>
 <select name="clubs" id="clubs" required>
-  <option value="ArtClub">Art Club</option>
-  <option value="ScienceClub">Science Club</option>
-  <option value="DramaClub">Drama Club</option>
-  <option value="MusicClub">Music Club</option>
-  <option value="SportsClub">Sports Club</option>
+  <option value="Art Club">Art Club</option>
+  <option value="Science Club">Science Club</option>
+  <option value="Drama Club">Drama Club</option>
+  <option value="Music Club">Music Club</option>
+  <option value="Sports Club">Sports Club</option>
 </select><br><br>
-<label for="reason">Why do you want to join?</label>
+<label for="reason">Why do you want to join?</label><br>
 <textarea id="tArea" name="reason" rows="4" cols="50" required> </textarea>
 
 </fieldset><br>
@@ -70,5 +75,8 @@ onblur="this.style.background='lightyellow';">
 <button type="button" id="viewSignups">View Sign-Ups</button>
 </form>
 
+<!-- Link to external JavaScript file -->
 <script src="Reg.js"></script>
+
+</body>
 </html>
